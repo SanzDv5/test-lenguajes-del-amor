@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario | Lenguajes del Amor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-container">
+        <header class="page-header text-center">
+            <a class="back-button" href="index.html" aria-label="Volver a las instrucciones">
+                <span class="back-button-icon" aria-hidden="true">&#8592;</span>
+                <span>Volver a las instrucciones</span>
+            </a>
+            <h1 class="app-title">Cuestionario de los Lenguajes del Amor</h1>
+            <p>En cada pregunta, elige una afirmación, ambas o ninguna. Responde pensando en lo que te hace sentir más querido.</p>
+        </header>
+
+        <form id="amor-form">
+            <div id="preguntas-contenedor"></div>
+            <div class="submit-container">
+                <button id="btn-calcular" type="submit">Ver mi resultado</button>
+            </div>
+        </form>
+
+        <section id="resultados-contenedor" class="oculto" aria-live="polite">
+            <h2>Tu lenguaje principal es</h2>
+            <p id="lenguaje-principal"></p>
+            <p id="descripcion-lenguaje"></p>
+            <div id="puntajes-detalle" class="scores-grid"></div>
+            <button id="btn-reiniciar" type="button">Repetir cuestionario</button>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
