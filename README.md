@@ -1,79 +1,123 @@
 # Test de los Cinco Lenguajes del Amor
 
-Aplicación web estática en español para descubrir qué lenguaje del amor tiene mayor presencia según las respuestas del cuestionario.
+Una experiencia interactiva para explorar cómo expresamos y percibimos el afecto a través de Correo formas diferentes de conectar con los demás.
 
-## Características
+El cuestionario plantea 30 situaciones en las que puedes elegir entre dos afirmaciones. Puedes identificarte con una de ellas, con las dos o con ninguna. A partir de tus elecciones, la aplicación construye un perfil de puntuaciones y muestra qué lenguaje tiene mayor presencia en tus respuestas.
 
-- Pantalla inicial con instrucciones y leyenda de los cinco lenguajes.
-- Cuestionario de 30 preguntas.
-- Posibilidad de seleccionar una afirmación, ambas o ninguna en cada pregunta.
-- Cálculo automático de la puntuación de cada lenguaje.
-- Identificación del lenguaje con mayor puntuación.
-- Gestión de empates entre dos o más lenguajes.
-- Mensaje específico cuando no se selecciona ninguna opción.
-- Vista detallada con la puntuación obtenida en cada lenguaje.
-- Opción para repetir el cuestionario.
-- Diseño responsive para dispositivos móviles y escritorio.
+# El test
 
-## Lenguajes evaluados
+## Los cinco lenguajes que se evalúan son:
 
-| Código | Lenguaje del amor |
-| --- | --- |
-| A | Palabras de Afirmación |
-| B | Tiempo de Calidad |
-| C | Recibir Regalos |
-| D | Actos de Servicio |
-| E | Toque Físico |
+| Código | Lenguaje | Se relaciona principalmente con |
+| --- | --- | --- |
+| A | Palabras de Afirmación | Expresar afecto mediante palabras, reconocimiento y apoyo |
+| B | Tiempo de Calidad | Compartir momentos y prestar atención plena |
+| C | Recibir Regalos | Expresar cariño mediante detalles y gestos significativos |
+| D | Actos de Servicio | Demostrar afecto ayudando y haciendo cosas por los demás |
+| E | Toque Físico | Comunicar cercanía mediante el contacto físico |
 
-## Cómo utilizarlo
+No existe una respuesta correcta. El resultado refleja únicamente el patrón de elecciones realizado durante el cuestionario.
 
-1. Abre `index.html` en un navegador.
-2. Lee las instrucciones y pulsa **Descubre tu lenguaje del amor**.
-3. En cada pregunta, selecciona la afirmación que mejor te represente. También puedes seleccionar ambas o ninguna.
-4. Pulsa **Ver mi resultado** para consultar el resultado y las puntuaciones.
-5. Pulsa **Repetir cuestionario** para comenzar de nuevo.
+# Cómo funciona
 
-## Ejecución local
+Cada una de las 30 preguntas contiene dos afirmaciones asociadas a diferentes lenguajes.
 
-El proyecto no necesita instalación de dependencias ni compilación. Puede abrirse directamente desde el explorador de archivos o ejecutarse con un servidor local.
+### La mecánica permite tres posibilidades:
 
-Por ejemplo, con Python:
+* Seleccionar la primera afirmación.
+* Seleccionar la segunda afirmación.
+* Seleccionar ambas o ninguna.
+
+Cada selección suma un punto al lenguaje correspondiente. Al finalizar, se comparan las cinco puntuaciones y se identifica el valor más alto.
+
+Cuando dos o más lenguajes alcanzan la misma puntuación máxima, el resultado muestra el empate en lugar de forzar una única categoría.
+
+Si no se selecciona ninguna opción a lo largo del cuestionario, la aplicación informa de que no hay suficientes respuestas para establecer un resultado.
+
+# La experiencia
+
+### El recorrido está dividido en dos momentos.
+
+## 1. Introducción
+
+`index.html` presenta el propósito del test, explica brevemente los cinco lenguajes y permite comenzar el cuestionario.
+
+## 2. Cuestionario y resultado
+
+`form.html` contiene las preguntas y gestiona el proceso completo de respuesta. Una vez finalizado el test, la misma vista presenta:
+
+* El lenguaje o lenguajes con mayor puntuación.
+* La puntuación obtenida en cada categoría.
+* El resultado del cuestionario.
+* La posibilidad de empezar de nuevo.
+
+El objetivo es que el resultado no se limite a decir cuál es el lenguaje predominante, sino que permita ver cómo se distribuyen las preferencias entre las cinco categorías.
+
+# Arquitectura
+
+El proyecto mantiene una separación sencilla entre estructura, presentación y comportamiento:
+
+```text
+.
+├── index.html
+├── form.html
+├── app.js
+├── style.css
+└── README.md
+```
+
+### `index.html`
+Página de entrada. Contiene las instrucciones, la explicación de las categorías y el acceso al cuestionario.
+
+### `form.html`
+Contiene el formulario con las 30 preguntas y el espacio destinado a mostrar los resultados.
+
+### `app.js`
+Es el núcleo de la aplicación.
+
+### Aquí se encuentran:
+* Las preguntas y sus opciones.
+* La asociación de cada opción con un lenguaje.
+* La lectura de las respuestas.
+* El cálculo de las puntuaciones.
+* La detección de la puntuación máxima.
+* La gestión de resultados con empate.
+* El reinicio del cuestionario.
+
+### `style.css`
+Define la identidad visual de la aplicación, la composición de las pantallas, los estados de los controles y la adaptación a diferentes tamaños de pantalla.
+
+### Datos y privacidad
+Las respuestas permanecen en el contexto de la sesión y se utilizan únicamente para calcular el resultado.
+
+No hay cuentas de usuario, base de datos ni envío de respuestas a un servicio externo. Al abandonar o reiniciar el cuestionario, el resultado deja de formar parte de la sesión activa.
+
+# Ejecutarlo
+
+No es necesario instalar paquetes ni configurar un entorno de desarrollo.
+
+La forma más sencilla es abrir `index.html` directamente en el navegador.
+
+También puede utilizarse un servidor local:
 
 ```bash
 python -m http.server 8000
 ```
 
-Después, visita [http://localhost:8000](http://localhost:8000) en el navegador.
+Y acceder a:
+[http://localhost:8000](http://localhost:8000)
 
-## Funcionamiento
+# Tecnologías
 
-Las preguntas y sus opciones están definidas en `app.js`. Cada opción aporta un punto al lenguaje asociado:
+El proyecto está construido con tecnologías web estándar:
 
-- Las selecciones se leen al enviar el formulario.
-- Se cuentan los valores `A`, `B`, `C`, `D` y `E`.
-- Se muestra el lenguaje o los lenguajes con la puntuación máxima.
-- Las puntuaciones completas se presentan al final del cuestionario.
+* HTML5
+* CSS3
+* JavaScript
+* Space Grotesk, mediante Google Fonts
 
-Las respuestas no se guardan en un servidor ni en el navegador; el cálculo se realiza únicamente durante la sesión actual.
-
-## Estructura del proyecto
-
-```text
-.
-├── index.html   # Instrucciones y acceso al cuestionario
-├── form.html    # Formulario y sección de resultados
-├── app.js       # Preguntas, cálculo y comportamiento de la interfaz
-├── style.css    # Estilos, diseño responsive y estados visuales
-└── README.md    # Documentación del proyecto
-```
-
-## Tecnologías
-
-- HTML5
-- CSS3
-- JavaScript vanilla
-- Fuente Space Grotesk mediante Google Fonts
+No depende de frameworks ni de librerías de JavaScript.
 
 ## Nota
 
-Este cuestionario tiene un propósito orientativo y de reflexión personal. No es una evaluación psicológica ni sustituye el asesoramiento profesional.
+Este cuestionario tiene un propósito orientativo y de reflexión personal. __'No es una evaluación psicológica ni sustituye el asesoramiento profesional.'__
