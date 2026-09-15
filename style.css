@@ -97,6 +97,7 @@ body::before {
     padding: 0 1.4rem;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .app-subtitle {
@@ -241,6 +242,9 @@ body::before {
     color: var(--muted);
     font-size: 1rem;
     line-height: 1.75;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #amor-form {
